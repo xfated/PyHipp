@@ -1,5 +1,6 @@
 #!/bin/bash
-
+echo "665 cf1.txt"
+echo "110 cf2.txt"
 ls
 ls session01
 
