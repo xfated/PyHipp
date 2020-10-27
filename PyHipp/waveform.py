@@ -42,7 +42,13 @@ class Waveform(DPT.DPObject):
         templates = hkl.load(template_filename)
         self.data = []
         self.data= [np.squeeze(templates)]        
+    
+        aname = DPT.levels.normpath(os.path.dirname(pwd))
+        self.array_dict = dict()
+        self.array_dict[aname] = 0
         
+        self.numSets = 1
+        self.current_plot_type = None
         # The following is some hints of the things-to-do:
         
         # read the mountainsort template files
@@ -64,6 +70,9 @@ class Waveform(DPT.DPObject):
         # It is useful to store the information of the objects for panning through in the future
         DPT.DPObject.append(self, wf)  # append self.setidx and self.dirs
         self.data = self.data + wf.data
+        for ar in wf.array_dict:
+            self.array_dict[ar] = self.numSets
+        self.numSets += 1
         # .........................................
         # ..................code...................
         # .........................................
